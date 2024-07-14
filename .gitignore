@@ -1,0 +1,8 @@
+*.pyc
+.vscode
+__pycache__
+output/*
+output_*/*
+*_output/*
+docs/_build
+.vector_cache/*

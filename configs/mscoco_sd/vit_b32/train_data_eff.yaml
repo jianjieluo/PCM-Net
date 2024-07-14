@@ -1,0 +1,4 @@
+_BASE_: "train.yaml"
+
+DATALOADER:
+  DATA_EFF_RATIO: 0.1

@@ -1,0 +1,27 @@
+_BASE_: "train.yaml"
+
+
+####################################### DATASETS #######################################
+DATASETS:
+  TRAIN: 'MSCoCoDataset'
+  VAL: ''
+  TEST: 'MSCoCoDataset'
+
+
+###################################### DATALOADER ######################################
+DATALOADER:
+  FEATS_FOLDER: '../open_source_dataset/mscoco_stable_diffusion_vit_L14/features/CLIP_ViT_L14/img'
+  ANNO_FOLDER:  '../open_source_dataset/mscoco_stable_diffusion_vit_L14'
+
+
+######################################### MODEL #########################################
+MODEL:
+  WEIGHTS: ''
+
+
+####################################### evaluation ####################################### 
+INFERENCE:
+  NAME: 'COCOEvaler'
+  VAL_ANNFILE: 'None'
+  TEST_ANNFILE: '../open_source_dataset/mscoco_dataset/captions_test5k.json'
+  GENERATION_MODE: True

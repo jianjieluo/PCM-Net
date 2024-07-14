@@ -1,0 +1,134 @@
+SEED: 1234
+OUTPUT_DIR: './output_default'
+
+####################################### DATASETS #######################################
+DATASETS:
+  TRAIN: 'Flickr30kCapDataset'
+  VAL: ''
+  TEST: 'Flickr30kCapDataset'
+
+###################################### DATALOADER ######################################
+DATALOADER:
+  TRAIN_BATCH_SIZE: 32
+  TEST_BATCH_SIZE: 32
+  NUM_WORKERS: 4
+  FEATS_FOLDER: '../open_source_dataset/flickr_stable_diffusion_vit_L14/features/CLIP_ViT_L14/img'
+  ANNO_FOLDER:  '../open_source_dataset/flickr_stable_diffusion_vit_L14/'
+  SEQ_PER_SAMPLE: 1
+  MAX_FEAT_NUM: 65
+
+######################################### Engine #########################################
+ENGINE:
+  NAME: 'DefaultTrainer'
+
+######################################### MODEL #########################################
+MODEL:
+  VOCAB_SIZE: 7553 # include <BOS>/<EOS>
+  META_ARCHITECTURE: 'TransformerEncoderDecoder'
+  ENCODER: 'GTransformerEncoder'
+  ENCODER_DIM: 512
+  DECODER: 'TransformerDecoder'
+  DECODER_DIM: 512
+  PREDICTOR: 'BasePredictor'
+  PRED_DROPOUT: 0.5
+  MAX_SEQ_LEN: 20
+  WEIGHTS: ''
+
+#################################### Token embedding ####################################
+  TOKEN_EMBED:
+    NAME: 'TokenBaseEmbedding'
+    DIM: 512
+    ACTIVATION: 'none'
+    USE_NORM: True
+    DROPOUT: 0.1
+    POSITION: 'SinusoidEncoding'
+
+#################################### Visual embedding ####################################
+  VISUAL_EMBED:
+    NAME: 'VisualGridClipTagLREmbedding'
+    IN_DIM: 1024
+    G_IN_DIM: 768
+    OUT_DIM: 512
+    ACTIVATION: 'relu'
+    USE_NORM: True
+    DROPOUT: 0.5
+    NOISE_INJ_VAR: 0.016 # -0.01
+    CLIPTAG:
+      VOCAB_EMBED_PATH: 'data/coco400_embeddings_ViT-L14_with_ensemble.pickle'
+      TOPK: 5
+      TOPK2: 5.0
+      THRES: 0.0
+      REPLACE_TYPE: 'top'
+      TYPE_VOCAB_SIZE: 2
+    
+####################################### BERT ############################################
+  BERT:
+    HIDDEN_SIZE: 512
+    HIDDEN_DROPOUT_PROB: 0.2
+    HIDDEN_ACT: "relu"
+    NUM_ATTENTION_HEADS: 8
+    INTERMEDIATE_SIZE: 2048
+    INTERMEDIATE_DROP: 0.2
+    FFN_DROPOUT_PROB: 0.2
+    ATTENTION_PROBS_DROPOUT_PROB: 0.3
+    NUM_HIDDEN_LAYERS: 3
+    NUM_GENERATION_LAYERS: 3
+    LAYER_DROP: 0.0
+ 
+####################################### Optimizer #######################################
+SOLVER:
+  NAME: 'Adam'
+  EPOCH: 12
+  CHECKPOINT_PERIOD: 1
+  EVAL_PERIOD: 1
+  BASE_LR: 0.0005
+  BIAS_LR_FACTOR: 1.0
+  WEIGHT_DECAY: 0.0
+  WEIGHT_DECAY_NORM: 0.0
+  WEIGHT_DECAY_BIAS: 0.0
+  MOMENTUM: 0.9
+  DAMPENING: 0.0
+  NESTEROV: 0.0
+  BETAS: [0.9, 0.999]
+  EPS: 1e-8
+  GRAD_CLIP: 0.1
+  GRAD_CLIP_TYPE: 'value'
+  NORM_TYPE: 2.0
+  WRITE_PERIOD: 20
+
+####################################### lr scheduler ####################################### 
+LR_SCHEDULER:
+  NAME: 'NoamLR'
+  MODEL_SIZE: 512
+  FACTOR: 1.0
+  WARMUP: 10000
+
+####################################### losses ####################################### 
+LOSSES:
+  NAMES: ['WeightedLabelSmoothing']
+  LABELSMOOTHING: 0.1
+  ALPHA: 4.0
+
+####################################### scorer ####################################### 
+SCORER:
+  NAME: 'BaseScorer'
+  TYPES: ['Cider']
+  WEIGHTS: [1.0]
+  GT_PATH: 'NONE'
+  CIDER_CACHED: 'NONE'
+  EOS_ID: 0
+
+####################################### decode strategy ####################################### 
+DECODE_STRATEGY:
+  NAME: 'BeamSearcher'
+  BEAM_SIZE: 3
+
+####################################### evaluation ####################################### 
+INFERENCE:
+  NAME: 'COCOEvaler'
+  VOCAB: '../open_source_dataset/flickr_dataset/vocabulary.txt'
+  ID_KEY: 'image_id'
+  VALUE: 'caption'
+  VAL_ANNFILE: 'None'
+  TEST_ANNFILE: '../open_source_dataset/flickr_dataset/captions_test1k.json'
+  GENERATION_MODE: True

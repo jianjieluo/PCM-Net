@@ -1,0 +1,27 @@
+_BASE_: "train.yaml"
+
+
+####################################### DATASETS #######################################
+DATASETS:
+  TRAIN: 'Flickr30kCapDataset'
+  VAL: ''
+  TEST: 'Flickr30kCapDataset'
+
+
+###################################### DATALOADER ######################################
+DATALOADER:
+  FEATS_FOLDER: '../open_source_dataset/flickr_stable_diffusion_vit_B32/features/CLIP_ViT_B32/img'
+  ANNO_FOLDER:  '../open_source_dataset/flickr_stable_diffusion_vit_B32'
+
+
+######################################### MODEL #########################################
+MODEL:
+  WEIGHTS: ''
+
+
+####################################### evaluation ####################################### 
+INFERENCE:
+  NAME: 'COCOEvaler'
+  VAL_ANNFILE: 'None'
+  TEST_ANNFILE: '../open_source_dataset/flickr_dataset/captions_test1k.json'
+  GENERATION_MODE: True

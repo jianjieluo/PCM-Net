@@ -1,0 +1,18 @@
+#torch>=1.8.0
+fvcore
+Cython
+pycocotools==2.0.0
+omegaconf
+cloudpickle
+torchvision
+tensorboard
+jsonlines
+json_lines
+pytorch_transformers
+# update in 20240504
+transformers
+# CLIP installation
+ftfy
+regex
+tqdm
+git+https://github.com/openai/CLIP.git
