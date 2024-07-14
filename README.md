@@ -2,12 +2,7 @@
 
 This is the official repository for **Unleashing Text-to-Image Diffusion Prior for Zero-Shot Image Captioning [ECCV24]**, mainly for the proposed framework PCM-Net.
 
-## Overview
-Zero-shot image captioning is a challenging task where only text data is available for training. While recent advancements in text-to-image diffusion models have enabled the generation of synthetic image-caption pairs, these pairs often suffer from defective details in salient regions, leading to semantic misalignment.
-
-PCM-Net introduces a Patch-wise Cross-modal feature Mixup (PCM) mechanism that adaptively mitigates unfaithful content in a fine-grained manner during training. This mechanism can be integrated into most encoder-decoder frameworks.
-
-## PCM-Net Framework
+## Framework
 ![pcmnet](imgs/framework.jpg)
 
 - **Salient Visual Concept Detection:** For each input image, salient visual concepts are detected based on image-text similarity in CLIP space.
