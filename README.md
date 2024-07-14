@@ -13,9 +13,9 @@ This is the official repository for **Unleashing Text-to-Image Diffusion Prior f
 
 ## Data Preparation
 
-[SynthImgCap Dataset](https://jianjieluo.github.io/SynthImgCap/#SynthImgCap) is available.
-
-META ANNO DATA and will be released soon...
+- [SynthImgCap Dataset](https://jianjieluo.github.io/SynthImgCap/#SynthImgCap) is available.
+- We use [OpenAI-CLIP-Feature](https://github.com/jianjieluo/OpenAI-CLIP-Feature) to extract the visual CLIP features of synthetic images at training and GT real images at inference.
+- META ANNO DATA will be released soon...
 
 
 ## Training
