@@ -15,7 +15,7 @@ This is the official repository for **Unleashing Text-to-Image Diffusion Prior f
 
 - [SynthImgCap Dataset](https://jianjieluo.github.io/SynthImgCap/#SynthImgCap) is available.
 - We use [OpenAI-CLIP-Feature](https://github.com/jianjieluo/OpenAI-CLIP-Feature) to extract the visual CLIP features of synthetic images at training and GT real images at inference.
-- META ANNO DATA will be released soon...
+- META ANNO DATA and RELEASED MODELS are released in [Google Driver](https://drive.google.com/drive/folders/1sWlgeDKzKHRuAZAS-OuNWyct2yxE3qWD?usp=drive_link).
 
 
 ## Training
@@ -30,11 +30,13 @@ Please refer to `scripts/final_eval_for_paper.sh`.
 If you use the SynthImgCap dataset or code or models for your research, please cite:
 
 ```
-@inproceedings{luo2024unleashing,
-    title = {Unleashing Text-to-Image Diffusion Prior for Zero-Shot Image Captioning},
-    author = {Luo, Jianjie and Chen, Jingwen and Li, Yehao and Pan, Yingwei and Feng, Jianlin and Chao, Hongyang and Yao, Ting},
-    booktitle = {European Conference on Computer Vision (ECCV)},
-    year = {2024}
+@inproceedings{luo2025unleashing,
+  title={Unleashing Text-to-Image Diffusion Prior for Zero-Shot Image Captioning},
+  author={Luo, Jianjie and Chen, Jingwen and Li, Yehao and Pan, Yingwei and Feng, Jianlin and Chao, Hongyang and Yao, Ting},
+  booktitle={European Conference on Computer Vision (ECCV)},
+  pages={237--254},
+  year={2024},
+  organization={Springer}
 }
 ```
 
